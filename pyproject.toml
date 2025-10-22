@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "pivvo"
-version = "0.1.0"
+version = "0.1.1"
 description = "CLI tool to auto-init Python projects with venv, git, and basic files."
 readme = "README.md"
 requires-python = ">=3.10"
@@ -12,10 +12,24 @@ authors = [
   { name="Devrat Kuntal", email="rdxdevbhai76@gmail.com" }
 ]
 license = "MIT"
+license-files = ["LICENSE"]
 keywords = ["cli","project","automation","python"]
+dependencies = [
+    "typer",
+    "rich",
+    "GitPython",
+    "pyfiglet",
+]
 classifiers = [
-    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
     "Operating System :: OS Independent",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest",
 ]
 
 [project.scripts]

@@ -1,4 +1,4 @@
-# pivvo
+# Pivvo
 
 [![PyPI version](https://img.shields.io/pypi/v/pivvo.svg)](https://pypi.org/project/pivvo/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)

@@ -1,21 +1,20 @@
-# Contributing to PySmith
+# Contributing to pivvo
 
-[![PyPI version](https://img.shields.io/pypi/v/pysmith.svg)](https://pypi.org/project/pysmith/)
+[![PyPI version](https://img.shields.io/pypi/v/pivvo.svg)](https://pypi.org/project/pivvo/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
 
 <div align="center">
   <pre>
-    ____        _____           _ __  __  
-   / __ \__  __/ ___/____ ___  (_) /_/ /_ 
-  / /_/ / / / /\__ \/ __ `__ \/ / __/ __ \
- / ____/ /_/ /___/ / / / / / / / /_/ / / /
-/_/    \__, //____/_/ /_/ /_/_/\__/_/ /_/ 
-      /____/                              
+    ____  _                 
+   / __ \(_)   ___   ______ 
+  / /_/ / / | / / | / / __ \
+ / ____/ /| |/ /| |/ / /_/ /
+/_/   /_/ |___/ |___/\____/ 
   </pre>
 </div>
 
-> Welcome! We're thrilled you're interested in contributing to PySmith. This guide will help you get started with contributing to this Python CLI tool for project initialization and management.
+> Welcome! We're thrilled you're interested in contributing to pivvo. This guide will help you get started with contributing to this Python CLI tool for project initialization and management.
 
 ## Table of Contents
 
@@ -34,14 +33,14 @@
 We welcome contributions in various forms:
 
 ### 🐛 Bug Reports
-- Found a bug? [Open an issue](https://github.com/Flaxmbot/pysmith/issues/new?template=bug_report.md) with detailed steps to reproduce
-- Include your Python version, OS, and PySmith version
+- Found a bug? [Open an issue](https://github.com/Flaxmbot/pivvo/issues/new?template=bug_report.md) with detailed steps to reproduce
+- Include your Python version, OS, and pivvo version
 - Screenshots or error logs are helpful
 
 ### ✨ Feature Requests
-- Have an idea for a new feature? [Create a feature request](https://github.com/Flaxmbot/pysmith/issues/new?template=feature_request.md)
+- Have an idea for a new feature? [Create a feature request](https://github.com/Flaxmbot/pivvo/issues/new?template=feature_request.md)
 - Describe the problem it solves and how it would work
-- Consider if it aligns with PySmith's goal of streamlining Python project management
+- Consider if it aligns with pivvo's goal of streamlining Python project management
 
 ### 📚 Documentation
 - Improve existing documentation
@@ -60,8 +59,8 @@ We welcome contributions in various forms:
 1. **Fork the repository** on GitHub
 2. **Clone your fork** locally:
    ```bash
-   git clone https://github.com/Flaxmbot/pysmith.git
-   cd pysmith
+   git clone https://github.com/Flaxmbot/pivvo.git
+   cd pivvo
    ```
 3. **Set up your development environment** (see below)
 4. **Create a feature branch**:
@@ -90,8 +89,8 @@ We welcome contributions in various forms:
 
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/Flaxmbot/pysmith.git
-   cd pysmith
+   git clone https://github.com/Flaxmbot/pivvo.git
+   cd pivvo
    ```
 
 2. **Create a virtual environment**:
@@ -122,14 +121,14 @@ We welcome contributions in various forms:
 
 6. **Verify installation**:
    ```bash
-   pysmith --version
+   pivvo --version
    ```
 
 ### Project Structure
 
 ```
-pysmith/
-├── pysmith/
+pivvo/
+├── pivvo/
 │   ├── __init__.py
 │   ├── cli.py          # Main CLI implementation (Typer)
 │   └── main.py         # Package entry point
@@ -160,9 +159,9 @@ We use automated tools to ensure consistent formatting:
 
 Run formatting before committing:
 ```bash
-black pysmith/
-isort pysmith/
-mypy pysmith/
+black pivvo/
+isort pivvo/
+mypy pivvo/
 ```
 
 ### Naming Conventions
@@ -193,7 +192,7 @@ We use pytest for testing with coverage reporting.
 pytest
 
 # Run with coverage
-pytest --cov=pysmith --cov-report=html
+pytest --cov=pivvo --cov-report=html
 
 # Run specific test file
 pytest tests/test_cli.py
@@ -213,7 +212,7 @@ pytest -k "test_init"
 ### Test Structure
 ```python
 import pytest
-from pysmith.cli import app
+from pivvo.cli import app
 
 def test_command_success():
     # Test successful execution
@@ -228,8 +227,8 @@ def test_command_failure():
 
 1. **Ensure your PR is ready**:
    - [ ] Tests pass locally: `pytest`
-   - [ ] Code follows style guidelines: `black pysmith/ && isort pysmith/`
-   - [ ] Type checking passes: `mypy pysmith/`
+   - [ ] Code follows style guidelines: `black pivvo/ && isort pivvo/`
+   - [ ] Type checking passes: `mypy pivvo/`
    - [ ] Documentation updated if needed
    - [ ] Commit messages are clear and descriptive
 
@@ -262,7 +261,7 @@ def test_command_failure():
 ### Bug Reports
 When reporting bugs, please include:
 
-- **PySmith version**: `pysmith --version`
+- **pivvo version**: `pivvo --version`
 - **Python version**: `python --version`
 - **Operating System**: Windows/macOS/Linux + version
 - **Steps to reproduce**: Detailed steps
@@ -307,10 +306,10 @@ Special thanks to our top contributors:
 ---
 
 <div align="center">
-  <p>Made with ❤️ by the PySmith community</p>
+  <p>Made with ❤️ by the pivvo community</p>
   <p>
-    <a href="#contributing-to-pysmith">Back to top</a> •
-    <a href="https://github.com/Flaxmbot/pysmith/issues">Report Issue</a> •
-    <a href="https://github.com/Flaxmbot/pysmith/discussions">Start Discussion</a>
+    <a href="#contributing-to-pivvo">Back to top</a> •
+    <a href="https://github.com/Flaxmbot/pivvo/issues">Report Issue</a> •
+    <a href="https://github.com/Flaxmbot/pivvo/discussions">Start Discussion</a>
   </p>
 </div>

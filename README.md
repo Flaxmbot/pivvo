@@ -1,24 +1,23 @@
-# PySmith
+# pivvo
 
-[![PyPI version](https://img.shields.io/pypi/v/pysmith.svg)](https://pypi.org/project/pysmith/)
+[![PyPI version](https://img.shields.io/pypi/v/pivvo.svg)](https://pypi.org/project/pivvo/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
-[![CI](https://github.com/Flaxmbot/pysmith/workflows/CI/badge.svg)](https://github.com/Flaxmbot/pysmith/actions)
+[![CI](https://github.com/Flaxmbot/pivvo/workflows/CI/badge.svg)](https://github.com/Flaxmbot/pivvo/actions)
 
 <div align="center">
   <pre>
-    ____        _____           _ __  __  
-   / __ \__  __/ ___/____ ___  (_) /_/ /_ 
-  / /_/ / / / /\__ \/ __ `__ \/ / __/ __ \
- / ____/ /_/ /___/ / / / / / / / /_/ / / /
-/_/    \__, //____/_/ /_/ /_/_/\__/_/ /_/ 
-      /____/                              
+    ____  _                 
+   / __ \(_)   ___   ______ 
+  / /_/ / / | / / | / / __ \
+ / ____/ /| |/ /| |/ / /_/ /
+/_/   /_/ |___/ |___/\____/ 
   </pre>
 </div>
 
 > A small, pragmatic CLI tool to initialize and manage Python projects with ease. Bootstrap your projects, manage dependencies, and streamline your workflow—all from the command line.
 
-PySmith helps developers quickly set up Python projects with virtual environments, Git repositories, and essential files. It provides a suite of commands to manage dependencies, run scripts, and maintain your project's environment without leaving the terminal.
+pivvo helps developers quickly set up Python projects with virtual environments, Git repositories, and essential files. It provides a suite of commands to manage dependencies, run scripts, and maintain your project's environment without leaving the terminal.
 
 ## Table of Contents
 
@@ -46,14 +45,14 @@ PySmith helps developers quickly set up Python projects with virtual environment
 ### From PyPI (Recommended)
 
 ```bash
-pip install pysmith
+pip install pivvo
 ```
 
 ### From Source
 
 ```bash
-git clone https://github.com/Flaxmbot/pysmith.git
-cd pysmith
+git clone https://github.com/Flaxmbot/pivvo.git
+cd pivvo
 pip install -e .
 ```
 
@@ -64,52 +63,52 @@ pip install -e .
 
 ## 🚀 Quickstart
 
-1. **Install PySmith**:
+1. **Install pivvo**:
    ```bash
-   pip install pysmith
+   pip install pivvo
    ```
 
 2. **Initialize a new project**:
    ```bash
-   pysmith init my-awesome-project
+   pivvo init my-awesome-project
    cd my-awesome-project
    ```
 
 3. **Install dependencies**:
    ```bash
-   pysmith install-deps requests flask python-dotenv
+   pivvo install-deps requests flask python-dotenv
    ```
 
 4. **Run your application**:
    ```bash
-   pysmith run app.py
+   pivvo run app.py
    ```
 
 That's it! Your project is ready with a virtual environment, Git repository, and all dependencies installed.
 
 ## 📖 Commands
 
-PySmith provides the following commands:
+pivvo provides the following commands:
 
 | Command | Description |
 |---------|-------------|
-| `pysmith init <name>` | Initialize a new project directory with venv and Git |
-| `pysmith install-deps [packages...]` | Install packages into the local venv. Use `-f/--file` to install from requirements file |
-| `pysmith run <script.py>` | Execute a Python script inside the venv |
-| `pysmith list` | List all packages installed in the venv |
-| `pysmith freeze` | Write current venv packages to `requirements.txt` |
-| `pysmith upgrade` | Upgrade all packages listed in `requirements.txt` to latest versions |
-| `pysmith remove <package>` | Uninstall a package and update `requirements.txt` |
+| `pivvo init <name>` | Initialize a new project directory with venv and Git |
+| `pivvo install-deps [packages...]` | Install packages into the local venv. Use `-f/--file` to install from requirements file |
+| `pivvo run <script.py>` | Execute a Python script inside the venv |
+| `pivvo list` | List all packages installed in the venv |
+| `pivvo freeze` | Write current venv packages to `requirements.txt` |
+| `pivvo upgrade` | Upgrade all packages listed in `requirements.txt` to latest versions |
+| `pivvo remove <package>` | Uninstall a package and update `requirements.txt` |
 
 ### Getting Help
 
 ```bash
 # General help
-pysmith --help
+pivvo --help
 
 # Command-specific help
-pysmith install-deps --help
-pysmith init --help
+pivvo install-deps --help
+pivvo init --help
 ```
 
 ## 🛠️ Development
@@ -117,8 +116,8 @@ pysmith init --help
 ### Setting Up Development Environment
 
 ```bash
-git clone https://github.com/Flaxmbot/pysmith.git
-cd pysmith
+git clone https://github.com/Flaxmbot/pivvo.git
+cd pivvo
 python -m venv venv
 # On Windows:
 venv\Scripts\activate
@@ -130,8 +129,8 @@ pip install -r requirements.txt
 ### Project Structure
 
 ```
-pysmith/
-├── pysmith/
+pivvo/
+├── pivvo/
 │   ├── __init__.py
 │   ├── cli.py          # Main CLI implementation
 │   └── main.py         # Package entry point
@@ -153,14 +152,14 @@ pip install pytest
 pytest
 
 # Run with coverage
-pytest --cov=pysmith
+pytest --cov=pivvo
 ```
 
 ### Development Notes
 
-- **CLI Implementation**: Located in `pysmith/cli.py` using Typer for argument parsing
+- **CLI Implementation**: Located in `pivvo/cli.py` using Typer for argument parsing
 - **Terminal Output**: Uses Rich for beautiful, colored terminal output
-- **Error Logging**: Failed subprocess commands are logged to `pysmith-error.log`
+- **Error Logging**: Failed subprocess commands are logged to `pivvo-error.log`
 - **Git Integration**: Uses GitPython for repository initialization
 - **Cross-Platform**: Handles different Python executable paths for Windows/macOS/Linux
 
@@ -168,7 +167,7 @@ pytest --cov=pysmith
 
 When using Git Bash on Windows, you might see raw ANSI escape codes. Solutions:
 - Force ANSI rendering: Modify `cli.py` to use `Console(force_terminal=True, color_system="auto")`
-- Use `winpty`: `winpty python pysmith/main.py ...`
+- Use `winpty`: `winpty python pivvo/main.py ...`
 - Use PowerShell, CMD, or Windows Terminal instead of Git Bash
 
 ## 🤝 Contributing
@@ -204,8 +203,8 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 <div align="center">
   <p>Made with ❤️ for the Python community</p>
   <p>
-    <a href="#pysmith">Back to top</a> •
-    <a href="https://github.com/Flaxmbot/pysmith/issues">Report Bug</a> •
-    <a href="https://github.com/Flaxmbot/pysmith/issues">Request Feature</a>
+    <a href="#pivvo">Back to top</a> •
+    <a href="https://github.com/Flaxmbot/pivvo/issues">Report Bug</a> •
+    <a href="https://github.com/Flaxmbot/pivvo/issues">Request Feature</a>
   </p>
 </div>

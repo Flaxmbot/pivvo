@@ -2,7 +2,7 @@ import pytest
 from pathlib import Path
 import tempfile
 import shutil
-from pysmith.cli import app
+from pivvo.cli import app
 from typer.testing import CliRunner
 
 runner = CliRunner()

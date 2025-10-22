@@ -33,7 +33,7 @@ def main_callback(ctx: typer.Context):
     """Show banner or help."""
     f = Figlet(font="slant")
     # --- CHANGED ---
-    console.print(f.renderText("PySmith").rstrip(), style="bold cyan")
+    console.print(f.renderText("PySmith").rstrip(), style="bold green")
     if ctx.invoked_subcommand is None:
         # --- CHANGED ---
         console.print("[yellow]Use [bold]pysmith --help[/bold] to view commands.[/yellow]")

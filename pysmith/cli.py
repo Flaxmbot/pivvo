@@ -80,8 +80,14 @@ def init(project_name: str):
                 text=True,
                 encoding='utf-8'
             )
-            
-            Repo.init(project_path)
+
+            try:
+                Repo.init(project_path)
+            except Exception as e:
+                log_error_details(subprocess.CalledProcessError(1, ["git", "init"], "", str(e)))
+                console.print(f"[red]❌ Git initialization failed. Check {PYSMITH_ERROR_LOG} for details.[/red]")
+                raise typer.Exit(1)
+
             progress.stop_task(task)
             
         except subprocess.CalledProcessError as e:
@@ -103,8 +109,7 @@ def install_deps(
     python_exec = venv_path / ("Scripts/python.exe" if os.name == "nt" else "bin/python")
 
     if not python_exec.exists():
-        # --- CHANGED ---
-        console.print("[red]No virtual environment found. Run 'pysmith init <project>' first.[/red]")
+        console.print("[red]No virtual environment found.[/red]")
         raise typer.Exit(1)
 
     with Progress(SpinnerColumn(), TextColumn("[bold blue]{task.description}"), transient=True, console=console) as progress:
@@ -149,7 +154,7 @@ def install_deps(
 def run(file: str = typer.Argument(..., help="Script file to execute.")):
     python_exec = find_venv_path()
     if python_exec is None:
-        console.print("[red]No virtual environment found in current or parent directories. Please run 'pysmith init <project>' to create a project with a virtual environment.[/red]")
+        console.print("[red]No virtual environment found.[/red]")
         raise typer.Exit(1)
 
     script_path = Path(file)
@@ -173,7 +178,7 @@ def list():
     if not python_exec.exists():
         console.print("[red]No virtual environment found.[/red]")
         raise typer.Exit(1)
-    
+
     subprocess.run([str(python_exec), "-m", "pip", "list"])
 
 
@@ -184,7 +189,7 @@ def freeze():
     if not python_exec.exists():
         console.print("[red]No virtual environment found.[/red]")
         raise typer.Exit(1)
-    
+
     with open("requirements.txt", "w") as f:
         subprocess.run([str(python_exec), "-m", "pip", "freeze"], stdout=f)
     console.print("[green]✅ requirements.txt updated[/green]")

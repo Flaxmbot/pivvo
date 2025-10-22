@@ -1,151 +1,211 @@
 # PySmith
 
-PySmith is a small, pragmatic CLI tool to initialize and manage Python projects. It helps you
-bootstrap a project directory (with a virtual environment, git repo, basic files), manage
-dependencies inside the project's venv, and perform common tasks like running scripts,
-freezing requirements, or upgrading packages.
+[![PyPI version](https://img.shields.io/pypi/v/pysmith.svg)](https://pypi.org/project/pysmith/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
+[![CI](https://github.com/Flaxmbot/pysmith/workflows/CI/badge.svg)](https://github.com/Flaxmbot/pysmith/actions)
 
-This repository is intended to be contribution-friendly. Whether you want to fix a bug,
-add features, or improve documentation — you're welcome!
-
----
-
-## Key Features
-
-- Initialize a new Python project with venv, `README.md`, `__init__.py`, and `.gitignore`.
-- Create and manage a per-project virtual environment.
-- Install, list, freeze, upgrade, and remove dependencies using the venv's pip.
-- Run scripts inside the project's venv.
-- Small, dependency-light implementation using `typer`, `rich`, `gitpython`, and `pyfiglet`.
-
----
-
-## Quickstart
-
-Prerequisites:
-
-- Python 3.10+ (project was developed using 3.11/3.13)
-- pip
-
-Install dependencies for development (recommended in a separate venv):
-
-````text
-    ____        _____           _ __  __  
-   / __ \__  __/ ___/____ ___  (_) /_/ /_
-  / /_/ / / / /\__ \/ __ `__ \/ / __/ __ \
- / ____/ /_/ /___/ / / / / / / / /_/ / / /
+<div align="center">
+  <pre>
+ ____        _____           _ __  __  
+/ __ \__  __/ ___/____ ___  (_) /_/ /_
+/ /_/ / / / /\__ \/ __ `__ \/ / __/ __ \
+/ ____/ /_/ /___/ / / / / / / / /_/ / / /
 /_/    \__, //____/_/ /_/ /_/_/\__/_/ /_/ 
   /____/                              
+  </pre>
+</div>
 
-# PySmith
+> A small, pragmatic CLI tool to initialize and manage Python projects with ease. Bootstrap your projects, manage dependencies, and streamline your workflow—all from the command line.
 
-PySmith is a small, pragmatic CLI tool to initialize and manage Python projects. It helps you
-bootstrap a project directory (with a virtual environment, git repo, basic files), manage
-dependencies inside the project's venv, and perform common tasks like running scripts,
-freezing requirements, or upgrading packages.
+PySmith helps developers quickly set up Python projects with virtual environments, Git repositories, and essential files. It provides a suite of commands to manage dependencies, run scripts, and maintain your project's environment without leaving the terminal.
 
-This repository is intended to be contribution-friendly. Whether you want to fix a bug,
-add features, or improve documentation — you're welcome!
+## Table of Contents
 
----
+- [✨ Features](#-features)
+- [📦 Installation](#-installation)
+- [🚀 Quickstart](#-quickstart)
+- [📖 Commands](#-commands)
+- [🛠️ Development](#️-development)
+- [🤝 Contributing](#-contributing)
+- [📄 License](#-license)
+- [👥 Authors](#-authors)
 
-## Key Features
+## ✨ Features
 
-- Initialize a new Python project with venv, `README.md`, `__init__.py`, and `.gitignore`.
-- Create and manage a per-project virtual environment.
-- Install, list, freeze, upgrade, and remove dependencies using the venv's pip.
-- Run scripts inside the project's venv.
-- Small, dependency-light implementation using `typer`, `rich`, `gitpython`, and `pyfiglet`.
+- **Project Initialization**: Create new Python projects with virtual environments, Git repos, and basic files in seconds
+- **Dependency Management**: Install, list, freeze, upgrade, and remove packages within the project's venv
+- **Script Execution**: Run Python scripts directly inside the project's virtual environment
+- **Beautiful Output**: Rich terminal interface with progress indicators and colored output
+- **Error Handling**: Comprehensive error logging for troubleshooting
+- **Cross-Platform**: Works on Windows, macOS, and Linux
+- **Lightweight**: Minimal dependencies for fast installation and execution
 
----
+## 📦 Installation
 
-This will create a folder `my_new_project/` containing:
-
-- `venv/` (virtual environment)
-- `__init__.py`
-- `README.md`
-- `.gitignore`
-
----
-
-## Commands
-
-The CLI exposes the following commands (via `typer`):
-
-- `init <project_name>` — initialize a new project directory with venv and git.
-- `install-deps [packages...]` — install packages into the local venv. Use `-f/--file` to install from a requirements file.
-- `run <script.py>` — execute a script inside the venv.
-- `list` — list packages installed in the venv.
-- `freeze` — write current venv packages to `requirements.txt`.
-- `upgrade` — upgrade packages listed in `requirements.txt`.
-- `remove <package>` — uninstall a package and update `requirements.txt`.
-
-Use `--help` to see command-specific options:
+### From PyPI (Recommended)
 
 ```bash
-python pysmith/main.py --help
-python pysmith/main.py install-deps --help
+pip install pysmith
 ```
 
----
-
-## Development notes
-
-- The CLI implementation is at `pysmith/cli.py` and the package entrypoint is `pysmith/main.py`.
-- The project uses `rich` for pretty terminal output and `typer` for argument handling.
-- Errors from subprocess calls are written to `pysmith-error.log` in the current working directory.
-
-Tips while developing:
-
-- When running CLI tools from Git Bash (MINGW64) on Windows you may see raw ANSI escape codes or unexpected terminal output. Two common solutions:
-  - Force ANSI rendering in `rich` by creating the Console with `Console(force_terminal=True, color_system="auto")` in `cli.py`.
-  - Run Python under `winpty` in Git Bash: `winpty python pysmith/main.py ...`, or use PowerShell/cmd/Windows Terminal.
-
----
-
-## Tests
-
-There is a `tests/` directory for unit tests — please add tests for new features and bug fixes.
-
-Run tests using your preferred test runner (example using pytest):
+### From Source
 
 ```bash
-python -m pip install pytest
-pytest -q
+git clone https://github.com/Flaxmbot/pysmith.git
+cd pysmith
+pip install -e .
 ```
 
+### Prerequisites
+
+- Python 3.10 or higher
+- pip (usually included with Python)
+
+## 🚀 Quickstart
+
+1. **Install PySmith**:
+   ```bash
+   pip install pysmith
+   ```
+
+2. **Initialize a new project**:
+   ```bash
+   pysmith init my-awesome-project
+   cd my-awesome-project
+   ```
+
+3. **Install dependencies**:
+   ```bash
+   pysmith install-deps requests flask python-dotenv
+   ```
+
+4. **Run your application**:
+   ```bash
+   pysmith run app.py
+   ```
+
+That's it! Your project is ready with a virtual environment, Git repository, and all dependencies installed.
+
+## 📖 Commands
+
+PySmith provides the following commands:
+
+| Command | Description |
+|---------|-------------|
+| `pysmith init <name>` | Initialize a new project directory with venv and Git |
+| `pysmith install-deps [packages...]` | Install packages into the local venv. Use `-f/--file` to install from requirements file |
+| `pysmith run <script.py>` | Execute a Python script inside the venv |
+| `pysmith list` | List all packages installed in the venv |
+| `pysmith freeze` | Write current venv packages to `requirements.txt` |
+| `pysmith upgrade` | Upgrade all packages listed in `requirements.txt` to latest versions |
+| `pysmith remove <package>` | Uninstall a package and update `requirements.txt` |
+
+### Getting Help
+
+```bash
+# General help
+pysmith --help
+
+# Command-specific help
+pysmith install-deps --help
+pysmith init --help
+```
+
+## 🛠️ Development
+
+### Setting Up Development Environment
+
+```bash
+git clone https://github.com/Flaxmbot/pysmith.git
+cd pysmith
+python -m venv venv
+# On Windows:
+venv\Scripts\activate
+# On macOS/Linux:
+source venv/bin/activate
+pip install -r requirements.txt
+```
+
+### Project Structure
+
+```
+pysmith/
+├── pysmith/
+│   ├── __init__.py
+│   ├── cli.py          # Main CLI implementation
+│   └── main.py         # Package entry point
+├── tests/              # Unit tests
+├── requirements.txt    # Dependencies
+├── pyproject.toml      # Package configuration
+├── LICENSE
+├── CONTRIBUTING.md
+└── README.md
+```
+
+### Running Tests
+
+```bash
+# Install test dependencies
+pip install pytest
+
+# Run tests
+pytest
+
+# Run with coverage
+pytest --cov=pysmith
+```
+
+### Development Notes
+
+- **CLI Implementation**: Located in `pysmith/cli.py` using Typer for argument parsing
+- **Terminal Output**: Uses Rich for beautiful, colored terminal output
+- **Error Logging**: Failed subprocess commands are logged to `pysmith-error.log`
+- **Git Integration**: Uses GitPython for repository initialization
+- **Cross-Platform**: Handles different Python executable paths for Windows/macOS/Linux
+
+### Tips for Windows Development
+
+When using Git Bash on Windows, you might see raw ANSI escape codes. Solutions:
+- Force ANSI rendering: Modify `cli.py` to use `Console(force_terminal=True, color_system="auto")`
+- Use `winpty`: `winpty python pysmith/main.py ...`
+- Use PowerShell, CMD, or Windows Terminal instead of Git Bash
+
+## 🤝 Contributing
+
+We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md) for details on:
+
+- Reporting bugs
+- Requesting features
+- Setting up your development environment
+- Submitting pull requests
+- Code style guidelines
+
+### Quick Contribution Flow
+
+1. Fork the repository
+2. Create a feature branch: `git checkout -b feature/amazing-feature`
+3. Add tests for your changes
+4. Ensure all tests pass: `pytest`
+5. Commit your changes: `git commit -m "Add amazing feature"`
+6. Push to your branch: `git push origin feature/amazing-feature`
+7. Open a Pull Request
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 👥 Authors
+
+- **Devrat Kuntal** - *Creator & Maintainer* - [rdxdevbhai76@gmail.com](mailto:rdxdevbhai76@gmail.com)
+
 ---
 
-## Contributing
-
-We welcome contributions. A good contribution flow:
-
-1. Fork the repository.
-2. Create a feature branch: `git checkout -b feat/some-feature`.
-3. Add tests that demonstrate the bug or cover the new behavior.
-4. Run tests and linters locally.
-5. Open a pull request with a clear description of the change.
-
-Please follow standard GitHub etiquette and add a meaningful commit message.
-
----
-
-## Troubleshooting
-
-- If `typer` fails to run, ensure you have `typer` (and other dependencies) installed in your environment.
-- On Windows, if virtual environment activation fails, ensure your Python installation can create venvs and that antivirus or OneDrive policies are not blocking virtualenv creation.
-- If subprocess commands fail during package installation, check `pysmith-error.log` for the stdout/stderr that was captured.
-
----
-
-## License
-
-This project is released under the MIT License. See `LICENSE` for details (add one if missing).
-
----
-
-## Maintainers
-
-- Primary: (add your name or GitHub handle here)
-
-Thanks for checking out PySmith — contributions, issues, and stars are all appreciated!
+<div align="center">
+  <p>Made with ❤️ for the Python community</p>
+  <p>
+    <a href="#pysmith">Back to top</a> •
+    <a href="https://github.com/Flaxmbot/pysmith/issues">Report Bug</a> •
+    <a href="https://github.com/Flaxmbot/pysmith/issues">Request Feature</a>
+  </p>
+</div>

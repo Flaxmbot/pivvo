@@ -28,6 +28,23 @@ def log_error_details(e: subprocess.CalledProcessError):
         f.write(e.stderr + "\n")
 
 
+def find_venv_path(start_path: Path = None) -> Path | None:
+    """Find the Python executable in a virtual environment by traversing up the directory tree."""
+    if start_path is None:
+        start_path = Path.cwd()
+    current = start_path
+    while True:
+        venv_path = current / "venv"
+        python_exec = venv_path / ("Scripts/python.exe" if os.name == "nt" else "bin/python")
+        if python_exec.exists():
+            return python_exec
+        parent = current.parent
+        if parent == current:  # reached root
+            break
+        current = parent
+    return None
+
+
 @app.callback(invoke_without_command=True)
 def main_callback(ctx: typer.Context):
     """Show banner or help."""
@@ -130,11 +147,9 @@ def install_deps(
 
 @app.command(help="Run a Python script inside the project's virtual environment.")
 def run(file: str = typer.Argument(..., help="Script file to execute.")):
-    venv_path = Path.cwd() / "venv"
-    python_exec = venv_path / ("Scripts/python.exe" if os.name == "nt" else "bin/python")
-
-    if not python_exec.exists():
-        console.print("[red]No virtual environment found.[/red]")
+    python_exec = find_venv_path()
+    if python_exec is None:
+        console.print("[red]No virtual environment found in current or parent directories. Please run 'pysmith init <project>' to create a project with a virtual environment.[/red]")
         raise typer.Exit(1)
 
     script_path = Path(file)
@@ -142,7 +157,13 @@ def run(file: str = typer.Argument(..., help="Script file to execute.")):
         console.print(f"[red]{script_path} not found[/red]")
         raise typer.Exit(1)
 
-    subprocess.check_call([str(python_exec), str(script_path)])
+    try:
+        subprocess.check_call([str(python_exec), str(script_path)])
+        console.print("[green]✅ Script executed successfully.[/green]")
+    except subprocess.CalledProcessError as e:
+        log_error_details(e)
+        console.print(f"[red]❌ Script execution failed. Check {PYSMITH_ERROR_LOG} for details.[/red]")
+        raise typer.Exit(1)
 
 
 @app.command(help="List installed packages inside venv.")
